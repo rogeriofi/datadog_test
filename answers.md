@@ -6,7 +6,7 @@
 *A: Tag has been added to /etc/datadog-agent/datadog.yaml:
 hostname: ECOMMERCE
 
-![tag] (https://github.com/rogeriofi/datadog_test/blob/master/tag.png)
+<img src="https://github.com/rogeriofi/datadog_test/blob/master/tag.png" width="800" height="403">
 
 ##### Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
