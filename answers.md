@@ -1,97 +1,163 @@
 ## Your answers to the questions go here.
 
-##### Q: Bonus question: In your own words, what is the Agent?
+##### Collecting Metrics:
+##### Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
-*A: The agent is a small app that will collect data 24/7 within the server, application, DB, infra, among others.
-The reason for installing an agent instead of agentless configuration is due to some country’s laws that prevent (does not allow) access from the Monitoring Platform to the server in production.
-Also for APM configurations the agent is a must considering the instrumentation.*
+*A Tag has been added to /etc/datadog-agent/datadog.yaml:
+hostname: ECOMMERCE
 
-##### Q: Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
+[![N|Solid] (https://drive.google.com/file/d/1Bzmx4ZcGDaXIlskcgAHLZbOSDiUi_0nw/view)
 
-*A.	Adding a tag via CMD:*
- [![N|Solid](http://blogroger.herokuapp.com/images/lvl1_3.jpg)](http://blogroger.herokuapp.com/level1_3.html)
+##### Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
-*A.	Host shown in DataDogHQ:*
-[![N|Solid](http://blogroger.herokuapp.com/images/first_question.jpg)](http://blogroger.herokuapp.com/level1_3.html)
+*A MySQL DB has been installed and the integration added from the WebUI. After it, it is a simple case to start the collection configuring the yaml file with the DB connection over: 
+/etc/datadog-agent/conf.d/mysql.d/conf.d
 
- 
-##### Q: Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
+##### Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
-*A.	Service Check for PostgreSQL:*
+*A In /etc/data-agent/checks.d I created the custom check:
+'''
+[root@konakart checks.d]# cat custom_check.py 
+from datadog_checks.checks import AgentCheck
+from random import randint
+class Check(AgentCheck):
+    def check(self, instance):
+        self.gauge('my_metric', randint(0,1000))
+[root@konakart checks.d]#
+'''
 
-[![N|Solid](http://blogroger.herokuapp.com/images/postgresql.jpg)](http://blogroger.herokuapp.com/level1_4.html)
- 
+##### Change your check's collection interval so that it only submits the metric once every 45 seconds.
 
-##### Q: Write a custom Agent check that samples a random value. Call this new metric: test.support.random
+*A 
+Over the path :
+[root@konakart conf.d]# cat custom_check.yaml 
+init_config:
+instances:
+  - min_collection_interval: 45
+  
+##### Bonus Question Can you change the collection interval without modifying the Python check file you created?
 
-*A.	Configuration for both .YAML and .PY file:*
+*A Simply change the config /etc/datadog-agent/conf.d/custom_check.yaml as it shows in the precious answer.
 
-[![N|Solid](http://blogroger.herokuapp.com/images/random1.jpg)](http://blogroger.herokuapp.com/level1_5.html)
+##### Visualizing Data:
+##### Utilize the Datadog API to create a Timeboard that contains:
 
- [![N|Solid](http://blogroger.herokuapp.com/images/random2.jpg)](http://blogroger.herokuapp.com/level1_5.html)
- 
+##### Your custom metric scoped over your host.
+##### Any metric from the Integration on your Database with the anomaly function applied.
+##### Your custom metric with the rollup function applied to sum up all the points for the past hour into one bucket
+##### Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
 
-##### Q: Since your database integration is reporting now, clone your database integration dashboard and add additional database metrics to it as well as your test.support.random metric from the custom Agent check.
-
-*A: Additional Metric to postgreSQL to show concurrent Connections, Random Number dashboard and PostgreSQL dashboards:*
-
- [![N|Solid](http://blogroger.herokuapp.com/images/dashboard.jpg)](http://blogroger.herokuapp.com/level2_1.html)
- 
- 
-##### Q: Bonus question: What is the difference between a timeboard and a screenboard?
-
-*A: Timeboard shows all the metrics and data according to your configuration regarding timestamp (last hour, last week, etc). Also it has automatic layout/refresh.
-Screenboard, besides it is a drag and drop layout, the metrics shown is static regarding time. E.g. it will show you the last hour and you cant change that for all the other boxes containing metrics.
-The first is great for troubleshooting while the second is more relevant on the business side.*
-
-##### Q: Take a snapshot of your test.support.random graph and draw a box around a section that shows it going above 0.90. Make sure this snapshot is sent to your email by using the @notification
-
-[![N|Solid](http://blogroger.herokuapp.com/images/snapshot.jpg)](http://blogroger.herokuapp.com/level2_3.html)
-
-##### Q: Set up a monitor on this metric that alerts you when it goes above 0.90 at least once during the last 5 minutes
-
-*Alert confgiuration:*
-*1.	The alert*
-[![N|Solid](http://blogroger.herokuapp.com/images/alert1.jpg)](http://blogroger.herokuapp.com/level3_1.html)
-
-*2.	Metric*
-[![N|Solid](http://blogroger.herokuapp.com/images/alert2.jpg)](http://blogroger.herokuapp.com/level3_1.html)
-
-*3.	Once every 5 minutes*
-[![N|Solid](http://blogroger.herokuapp.com/images/alert3.jpg)](http://blogroger.herokuapp.com/level3_1.html)
-
-##### Bonus points: Make it a multi-alert by host so that you won't have to recreate it if your infrastructure scales up.
-
-*A.	Setup by Host*
-[![N|Solid](http://blogroger.herokuapp.com/images/alert2.jpg)](http://blogroger.herokuapp.com/level3_bonus.html)
-
-
-##### Q: Give it a descriptive monitor name and message (it might be worth it to include the link to your previously created dashboard in the message). Make sure that the monitor will notify you via email.
-
-*A.	Message description on alert:*
-[![N|Solid](http://blogroger.herokuapp.com/images/alert4.jpg)](http://blogroger.herokuapp.com/level3_3.html)
-
-*A.	Email to send the alerts to:*
-[![N|Solid](http://blogroger.herokuapp.com/images/alert5.jpg)](http://blogroger.herokuapp.com/level3_3.html)
-
-
-##### Q: This monitor should alert you within 15 minutes. So when it does, take a screenshot of the email that it sends you.
-
-*A.	Email snap with the message:*
-[![N|Solid](http://blogroger.herokuapp.com/images/alert6.jpg)](http://blogroger.herokuapp.com/level3_4.html)
-
-##### Q:Bonus: Since this monitor is going to alert pretty often, you don't want to be alerted when you are out of the office. Set up a scheduled downtime for this monitor that silences it from 7pm to 9am daily. Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
-
-*A.	Added a downtime for the alert, repeating daily:*
-[![N|Solid](http://blogroger.herokuapp.com/images/alert7.jpg)](http://blogroger.herokuapp.com/level3_5.html)
-[![N|Solid](http://blogroger.herokuapp.com/images/alert8.jpg)](http://blogroger.herokuapp.com/level3_5.html)
-
-
-
-
-
-
+*A Created a script to create the dashboard via API:
+'''
+[root@konakart ~]# cat datadog_script.py 
+from datadog import initialize, api
+options = {
+    'api_key': 'e5abbe9bfb4400015c25d3dc0332fbf8',
+    'app_key': 'd3ae82b5beec8ae71522fb81b435d020cfcf6f1f',
+    'api_host': 'https://api.datadoghq.eu'
+}
+initialize(**options)
+title = 'my_metric dashboard Test'
+description = 'Testing adding a new dashboard for my_metric using datadog API.'
+layout_type = 'ordered'
+widgets = [{
+    'definition': {
+        'type': 'timeseries',
+        'requests': [
+            {'q': 'avg:my_metric{host:ECOMMERCE}'}
+        ],
+        'title': 'my_metric on ECOMMERCE'
+    }
+},
+    {
+    'definition': {
+        'type': 'timeseries',
+        'requests': [
+            {'q': "anomalies(avg:mysql.performance.user_time{host:ECOMMERCE}, 'basic', 3)"}
+        ],
+        'title': 'Mysql CPU time per user'
+    }
+},
+    {
+    'definition': {
+        'type': 'query_value',
+        'requests': [
+            {'q': 'my_metric{host:ECOMMERCE}.rollup(sum, 3600)'}
+        ],
+        'title': 'my_metric rollup function'
+    }
+}]
+api.Dashboard.create(title=title,widgets=widgets,description=description,layout_type=layout_type)
+'''
 
 
+##### Once this is created, access the Dashboard from your Dashboard List in the UI:
+
+##### Set the Timeboard's timeframe to the past 5 minutes
+##### Take a snapshot of this graph and use the @ notation to send it to yourself.
+
+I couldn't change to the last 5 minutes.
+
+[![N|Solid] (https://drive.google.com/file/d/1DTg0rH5HopHK3vqfj0YXXOvZM_MUc_WW/view?usp=sharing)
 
 
+##### Bonus Question: What is the Anomaly graph displaying?
+
+*A The check itsolf is checking the CPU time used by MySQL. The gray area represented in the dashboard is the baseline taken from historical data. If anything deviates from the baseline a red line is diplayed to alert of abnormal usage. THe meaning is that the DB could be faulty or not performing queries in a tinmely fashion.
+
+
+##### Monitoring Data
+##### Since you’ve already caught your test metric going above 800 once, you don’t want to have to continually watch this dashboard to be alerted when it goes above 800 again. So let’s make life easier by creating a monitor.
+
+##### Create a new Metric Monitor that watches the average of your custom metric (my_metric) and will alert if it’s above the following values over the past 5 minutes:
+
+##### Warning threshold of 500
+##### Alerting threshold of 800
+##### And also ensure that it will notify you if there is No Data for this query over the past 10m.
+##### Please configure the monitor’s message so that it will:
+##### Send you an email whenever the monitor triggers.
+##### Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
+##### Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
+[![N|Solid] (https://drive.google.com/file/d/19_vyUZ_ThxNlSj-jwSEmVGYIwGqkNf20/view?usp=sharing)
+[![N|Solid] (https://drive.google.com/file/d/1iRQdDKj-sq5olqrQ-YZkZ8c5cnlWTsXF/view?usp=sharing)
+##### When this monitor sends you an email notification, take a screenshot of the email that it sends you.
+[![N|Solid] (https://drive.google.com/file/d/1kozSN4ez96xRlc-nNiP4Zcg97t2Bojrb/view?usp=sharing)
+
+##### Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
+
+##### One that silences it from 7pm to 9am daily on M-F,
+[![N|Solid] (https://drive.google.com/file/d/1EAxYZ88dMkV51tTjcYNa8AcpVQ_XkrCD/view?usp=sharing)
+##### And one that silences it all day on Sat-Sun.
+[![N|Solid] (https://drive.google.com/file/d/1tmpCm2f9zm8ZmaXV0LWh_nxwhwOSO0qr/view?usp=sharing)
+##### Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
+[![N|Solid] (https://drive.google.com/file/d/1n1UnVJQ47wUgti0FcCNLyJwoxXjITo_Q/view?usp=sharing)
+
+
+
+##### Collecting APM Data:
+
+Bonus Question: What is the difference between a Service and a Resource?
+
+*A I will be honest here and put my understanding instead of reading Datadog material. A Resource means a server, an application, DB, etc, it will be standalone checks that when displayed in the monitoring will be your resource.
+On the other hand a service can be a number of resources combined, creating an actual Business service. For e.g. You have an application server and a DB server as resources being monitored. The service ECOMMERCE are the 2 combined.
+For some reason in the datadog dashboards that understanding seems backwards.
+
+##### Provide a link and a screenshot of a Dashboard with both APM and Infrastructure Metrics.
+
+*A I did not follow the creation for the application given. I instrumented my own to see better data.
+Here is a snap from my APM map view:
+[![N|Solid] (https://drive.google.com/file/d/1gYum5jp85It85PdvWr3_NKxfNhKvQvSV/view?usp=sharing)
+
+some metrics from the APP (Tomcat as well):
+
+[![N|Solid] (https://drive.google.com/file/d/1hJf9D3QkJtF7q24ytwnJAbdMTD5tox2a/view?usp=sharing)
+
+
+
+##### Please include your fully instrumented app in your submission, as well.
+
+##### Final Question:
+##### Datadog has been used in a lot of creative ways in the past. We’ve written some blog posts about using Datadog to monitor the NYC Subway System, Pokemon Go, and even office restroom availability!
+
+##### Is there anything creative you would use Datadog for?
+*A There could be a monitoring of supermarket parking spaces displayed in a website. TO make sure you don't go when you know there is going to be a queue.
