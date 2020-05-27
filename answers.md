@@ -99,7 +99,7 @@ api.Dashboard.create(title=title,widgets=widgets,description=description,layout_
 
 I couldn't change to the last 5 minutes.
 
-![metric] (https://github.com/rogeriofi/datadog_test/blob/master/my_metric.png)
+<img src="https://github.com/rogeriofi/datadog_test/blob/master/my_metric.png" width="800" height="403">
 
 
 ##### Bonus Question: What is the Anomaly graph displaying?
@@ -119,19 +119,19 @@ I couldn't change to the last 5 minutes.
 ##### Send you an email whenever the monitor triggers.
 ##### Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
 ##### Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
-![alert1] (https://github.com/rogeriofi/datadog_test/blob/master/alert1.png)
-![alert2] (https://github.com/rogeriofi/datadog_test/blob/master/alert2.png)
+<img src="https://github.com/rogeriofi/datadog_test/blob/master/alert1.png" width="800" height="403">
+<img src="https://github.com/rogeriofi/datadog_test/blob/master/alert2.png" width="800" height="403">
 ##### When this monitor sends you an email notification, take a screenshot of the email that it sends you.
-![email] (https://github.com/rogeriofi/datadog_test/blob/master/email_alert.png)
+<img src="https://github.com/rogeriofi/datadog_test/blob/master/email_alert.png" width="800" height="403">
 
 ##### Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
 ##### One that silences it from 7pm to 9am daily on M-F,
-![down1] (https://github.com/rogeriofi/datadog_test/blob/master/downtime1.png)
+<img src="https://github.com/rogeriofi/datadog_test/blob/master/downtime1.png" width="800" height="403">
 ##### And one that silences it all day on Sat-Sun.
-![down2] (https://github.com/rogeriofi/datadog_test/blob/master/downtime2.png)
+<img src="https://github.com/rogeriofi/datadog_test/blob/master/downtime2.png" width="800" height="403">
 ##### Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
-![notify] (https://github.com/rogeriofi/datadog_test/blob/master/notify.png)
+<img src="https://github.com/rogeriofi/datadog_test/blob/master/notify.png" width="800" height="403">
 
 
 
@@ -147,11 +147,11 @@ For some reason in the datadog dashboards that understanding seems backwards.
 
 *A I did not follow the creation for the application given. I instrumented my own to see better data.
 Here is a snap from my APM map view:
-![apm] (https://github.com/rogeriofi/datadog_test/blob/master/apm.png)
+<img src="https://github.com/rogeriofi/datadog_test/blob/master/apm.png" width="800" height="403">
 
 some metrics from the APP (Tomcat as well):
 
-![metrics] (https://github.com/rogeriofi/datadog_test/blob/master/app_metrics.png)
+<img src="https://github.com/rogeriofi/datadog_test/blob/master/app_metrics.png" width="800" height="403">
 
 
 
