@@ -6,7 +6,7 @@
 *A: Tag has been added to /etc/datadog-agent/datadog.yaml:
 hostname: ECOMMERCE
 
-[![N|Solid] (https://github.com/rogeriofi/datadog_test/blob/master/tag.png)
+![tag] (https://github.com/rogeriofi/datadog_test/blob/master/tag.png)
 
 ##### Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
@@ -99,7 +99,7 @@ api.Dashboard.create(title=title,widgets=widgets,description=description,layout_
 
 I couldn't change to the last 5 minutes.
 
-[![N|Solid] (https://github.com/rogeriofi/datadog_test/blob/master/my_metric.png)
+![metric] (https://github.com/rogeriofi/datadog_test/blob/master/my_metric.png)
 
 
 ##### Bonus Question: What is the Anomaly graph displaying?
@@ -119,19 +119,19 @@ I couldn't change to the last 5 minutes.
 ##### Send you an email whenever the monitor triggers.
 ##### Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
 ##### Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
-[![N|Solid] (https://github.com/rogeriofi/datadog_test/blob/master/alert1.png)
-[![N|Solid] (https://github.com/rogeriofi/datadog_test/blob/master/alert2.png)
+![alert1] (https://github.com/rogeriofi/datadog_test/blob/master/alert1.png)
+![alert2] (https://github.com/rogeriofi/datadog_test/blob/master/alert2.png)
 ##### When this monitor sends you an email notification, take a screenshot of the email that it sends you.
-[![N|Solid] (https://github.com/rogeriofi/datadog_test/blob/master/email_alert.png)
+![email] (https://github.com/rogeriofi/datadog_test/blob/master/email_alert.png)
 
 ##### Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
 ##### One that silences it from 7pm to 9am daily on M-F,
-[![N|Solid] (https://github.com/rogeriofi/datadog_test/blob/master/downtime1.png)
+![down1] (https://github.com/rogeriofi/datadog_test/blob/master/downtime1.png)
 ##### And one that silences it all day on Sat-Sun.
-[![N|Solid] (https://github.com/rogeriofi/datadog_test/blob/master/downtime2.png)
+![down2] (https://github.com/rogeriofi/datadog_test/blob/master/downtime2.png)
 ##### Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
-[![N|Solid] (https://github.com/rogeriofi/datadog_test/blob/master/notify.png)
+![notify] (https://github.com/rogeriofi/datadog_test/blob/master/notify.png)
 
 
 
@@ -147,11 +147,11 @@ For some reason in the datadog dashboards that understanding seems backwards.
 
 *A I did not follow the creation for the application given. I instrumented my own to see better data.
 Here is a snap from my APM map view:
-[![N|Solid] (https://github.com/rogeriofi/datadog_test/blob/master/apm.png)
+![apm] (https://github.com/rogeriofi/datadog_test/blob/master/apm.png)
 
 some metrics from the APP (Tomcat as well):
 
-[![N|Solid] (https://github.com/rogeriofi/datadog_test/blob/master/app_metrics.png)
+![metrics] (https://github.com/rogeriofi/datadog_test/blob/master/app_metrics.png)
 
 
 
