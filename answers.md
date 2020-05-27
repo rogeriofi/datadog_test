@@ -3,20 +3,20 @@
 ##### Collecting Metrics:
 ##### Add tags in the Agent config file and show us a screenshot of your host and its tags on the Host Map page in Datadog.
 
-*A Tag has been added to /etc/datadog-agent/datadog.yaml:
+*A: Tag has been added to /etc/datadog-agent/datadog.yaml:
 hostname: ECOMMERCE
 
-[![N|Solid] (https://drive.google.com/file/d/1Bzmx4ZcGDaXIlskcgAHLZbOSDiUi_0nw/view)
+[![N|Solid] (https://github.com/rogeriofi/datadog_test/blob/master/tag.png)
 
 ##### Install a database on your machine (MongoDB, MySQL, or PostgreSQL) and then install the respective Datadog integration for that database.
 
-*A MySQL DB has been installed and the integration added from the WebUI. After it, it is a simple case to start the collection configuring the yaml file with the DB connection over: 
+*A: MySQL DB has been installed and the integration added from the WebUI. After it, it is a simple case to start the collection configuring the yaml file with the DB connection over: 
 /etc/datadog-agent/conf.d/mysql.d/conf.d
 
 ##### Create a custom Agent check that submits a metric named my_metric with a random value between 0 and 1000.
 
-*A In /etc/data-agent/checks.d I created the custom check:
-'''
+*A: In /etc/data-agent/checks.d I created the custom check:
+```
 [root@konakart checks.d]# cat custom_check.py 
 from datadog_checks.checks import AgentCheck
 from random import randint
@@ -24,11 +24,11 @@ class Check(AgentCheck):
     def check(self, instance):
         self.gauge('my_metric', randint(0,1000))
 [root@konakart checks.d]#
-'''
+```
 
 ##### Change your check's collection interval so that it only submits the metric once every 45 seconds.
 
-*A 
+*A:
 Over the path :
 [root@konakart conf.d]# cat custom_check.yaml 
 init_config:
@@ -37,7 +37,7 @@ instances:
   
 ##### Bonus Question Can you change the collection interval without modifying the Python check file you created?
 
-*A Simply change the config /etc/datadog-agent/conf.d/custom_check.yaml as it shows in the precious answer.
+*A: Simply change the config /etc/datadog-agent/conf.d/custom_check.yaml as it shows in the precious answer.
 
 ##### Visualizing Data:
 ##### Utilize the Datadog API to create a Timeboard that contains:
@@ -48,7 +48,8 @@ instances:
 ##### Please be sure, when submitting your hiring challenge, to include the script that you've used to create this Timeboard.
 
 *A Created a script to create the dashboard via API:
-'''
+
+```
 [root@konakart ~]# cat datadog_script.py 
 from datadog import initialize, api
 options = {
@@ -88,7 +89,7 @@ widgets = [{
     }
 }]
 api.Dashboard.create(title=title,widgets=widgets,description=description,layout_type=layout_type)
-'''
+```
 
 
 ##### Once this is created, access the Dashboard from your Dashboard List in the UI:
@@ -98,12 +99,12 @@ api.Dashboard.create(title=title,widgets=widgets,description=description,layout_
 
 I couldn't change to the last 5 minutes.
 
-[![N|Solid] (https://drive.google.com/file/d/1DTg0rH5HopHK3vqfj0YXXOvZM_MUc_WW/view?usp=sharing)
+[![N|Solid] (https://github.com/rogeriofi/datadog_test/blob/master/my_metric.png)
 
 
 ##### Bonus Question: What is the Anomaly graph displaying?
 
-*A The check itsolf is checking the CPU time used by MySQL. The gray area represented in the dashboard is the baseline taken from historical data. If anything deviates from the baseline a red line is diplayed to alert of abnormal usage. THe meaning is that the DB could be faulty or not performing queries in a tinmely fashion.
+*A The check itself is checking the CPU time used by MySQL. The gray area represented in the dashboard is the baseline taken from historical data. If anything deviates from the baseline a red line is diplayed to alert of abnormal usage. THe meaning is that the DB could be faulty or not performing queries in a tinmely fashion.
 
 
 ##### Monitoring Data
@@ -118,19 +119,19 @@ I couldn't change to the last 5 minutes.
 ##### Send you an email whenever the monitor triggers.
 ##### Create different messages based on whether the monitor is in an Alert, Warning, or No Data state.
 ##### Include the metric value that caused the monitor to trigger and host ip when the Monitor triggers an Alert state.
-[![N|Solid] (https://drive.google.com/file/d/19_vyUZ_ThxNlSj-jwSEmVGYIwGqkNf20/view?usp=sharing)
-[![N|Solid] (https://drive.google.com/file/d/1iRQdDKj-sq5olqrQ-YZkZ8c5cnlWTsXF/view?usp=sharing)
+[![N|Solid] (https://github.com/rogeriofi/datadog_test/blob/master/alert1.png)
+[![N|Solid] (https://github.com/rogeriofi/datadog_test/blob/master/alert2.png)
 ##### When this monitor sends you an email notification, take a screenshot of the email that it sends you.
-[![N|Solid] (https://drive.google.com/file/d/1kozSN4ez96xRlc-nNiP4Zcg97t2Bojrb/view?usp=sharing)
+[![N|Solid] (https://github.com/rogeriofi/datadog_test/blob/master/email_alert.png)
 
 ##### Bonus Question: Since this monitor is going to alert pretty often, you don’t want to be alerted when you are out of the office. Set up two scheduled downtimes for this monitor:
 
 ##### One that silences it from 7pm to 9am daily on M-F,
-[![N|Solid] (https://drive.google.com/file/d/1EAxYZ88dMkV51tTjcYNa8AcpVQ_XkrCD/view?usp=sharing)
+[![N|Solid] (https://github.com/rogeriofi/datadog_test/blob/master/downtime1.png)
 ##### And one that silences it all day on Sat-Sun.
-[![N|Solid] (https://drive.google.com/file/d/1tmpCm2f9zm8ZmaXV0LWh_nxwhwOSO0qr/view?usp=sharing)
+[![N|Solid] (https://github.com/rogeriofi/datadog_test/blob/master/downtime2.png)
 ##### Make sure that your email is notified when you schedule the downtime and take a screenshot of that notification.
-[![N|Solid] (https://drive.google.com/file/d/1n1UnVJQ47wUgti0FcCNLyJwoxXjITo_Q/view?usp=sharing)
+[![N|Solid] (https://github.com/rogeriofi/datadog_test/blob/master/notify.png)
 
 
 
@@ -146,11 +147,11 @@ For some reason in the datadog dashboards that understanding seems backwards.
 
 *A I did not follow the creation for the application given. I instrumented my own to see better data.
 Here is a snap from my APM map view:
-[![N|Solid] (https://drive.google.com/file/d/1gYum5jp85It85PdvWr3_NKxfNhKvQvSV/view?usp=sharing)
+[![N|Solid] (https://github.com/rogeriofi/datadog_test/blob/master/apm.png)
 
 some metrics from the APP (Tomcat as well):
 
-[![N|Solid] (https://drive.google.com/file/d/1hJf9D3QkJtF7q24ytwnJAbdMTD5tox2a/view?usp=sharing)
+[![N|Solid] (https://github.com/rogeriofi/datadog_test/blob/master/app_metrics.png)
 
 
 
